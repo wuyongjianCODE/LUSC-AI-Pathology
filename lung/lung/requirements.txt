@@ -1,0 +1,73 @@
+absl-py==0.15.0
+astunparse==1.6.3
+Brotli @ file:///croot/brotli-split_1714483155106/work
+cachetools==5.5.2
+certifi @ file:///croot/certifi_1725551672989/work/certifi
+charset-normalizer==2.0.12
+contourpy==1.1.1
+cycler==0.12.1
+flatbuffers==1.12
+fonttools==4.57.0
+gast==0.3.3
+google-auth==2.45.0
+google-auth-oauthlib==0.4.6
+google-pasta==0.2.0
+grpcio==1.32.0
+h5py==2.10.0
+idna==3.11
+imageio==2.35.1
+imgaug==0.4.0
+importlib_metadata==8.5.0
+importlib_resources==6.4.5
+joblib @ file:///croot/joblib_1718217211762/work
+Keras-Preprocessing==1.1.2
+kiwisolver==1.4.7
+lazy_loader==0.4
+Markdown==3.7
+MarkupSafe==2.1.5
+matplotlib==3.6.3
+networkx==3.1
+numpy==1.19.5
+oauthlib==3.3.1
+opencv-python==4.12.0.88
+openslide-python==1.4.1
+opt-einsum==3.3.0
+packaging @ file:///croot/packaging_1720101850331/work
+pandas==1.4.4
+pillow==10.4.0
+platformdirs==4.3.6
+pooch @ file:///croot/pooch_1695850093751/work
+protobuf==3.20.3
+pyasn1==0.6.1
+pyasn1_modules==0.4.2
+pyparsing==3.1.4
+pypinyin==0.55.0
+PySocks @ file:///tmp/build/80754af9/pysocks_1605305779399/work
+python-dateutil==2.9.0.post0
+pytz==2025.2
+PyWavelets==1.4.1
+requests @ file:///croot/requests_1721410876868/work
+requests-oauthlib==2.0.0
+rsa==4.9.1
+scikit-image==0.17.2
+scikit-learn==0.24.2
+scipy==1.10.1
+seaborn==0.12.2
+shapely==2.0.7
+six==1.15.0
+spams-bin==2.6.8
+staintools==2.1.2
+tensorboard==2.11.2
+tensorboard-data-server==0.6.1
+tensorboard-plugin-wit==1.8.1
+tensorflow-estimator==2.4.0
+tensorflow-gpu==2.4.0
+termcolor==1.1.0
+threadpoolctl @ file:///croot/threadpoolctl_1719407800858/work
+tifffile==2023.7.10
+tqdm==4.67.1
+typing-extensions==3.7.4.3
+urllib3 @ file:///croot/urllib3_1727769808118/work
+Werkzeug==3.0.6
+wrapt==1.12.1
+zipp==3.20.2

@@ -1,0 +1,128 @@
+MODEL:
+  META_ARCHITECTURE: "GeneralizedVLRCNN"  # 保持不变
+  WEIGHT: "/home/data/jy/GLIP/OUTPUT_TRAIN_COUNT/model_0001000.pth"
+  RPN_ONLY: False  # Mask R-CNN需要完整检测流程，关闭仅RPN模式
+  RPN_ARCHITECTURE: "StandardRPN"  # 改为标准RPN架构
+
+  BACKBONE:
+    CONV_BODY: "R-50-FPN"  # 改为Mask R-CNN标准的ResNet50-FPN
+    OUT_CHANNELS: 256
+    FREEZE_CONV_BODY_AT: 0  # Mask R-CNN默认不冻结骨干网络
+
+  # 移除SWINT相关配置（Mask R-CNN默认使用ResNet）
+  # SWINT: 相关配置全部删除
+
+  # 移除RETINANET配置（Mask R-CNN不使用RetinaNet）
+  # RETINANET: 相关配置全部删除
+
+  # 移除LANGUAGE_BACKBONE配置（Mask R-CNN无语言骨干网络）
+  # LANGUAGE_BACKBONE: 相关配置全部删除
+
+  RPN:
+    USE_FPN: True
+    ANCHOR_SIZES: (32, 64, 128, 256, 512)  # Mask R-CNN标准锚点尺寸
+    ANCHOR_STRIDE: (4, 8, 16, 32, 64)  # Mask R-CNN标准锚点步长
+    ASPECT_RATIOS: (0.5, 1.0, 2.0)  # Mask R-CNN标准长宽比
+    SCALES_PER_OCTAVE: 3  # Mask R-CNN标准每倍频程尺度数
+
+  # 移除PROMPT配置（Mask R-CNN无prompt机制）
+  # PROMPT: 相关配置全部删除
+
+  # 移除DYHEAD配置（Mask R-CNN使用标准头部）
+  # DYHEAD: 相关配置全部删除
+
+  # 移除FCOS/ATSS配置（Mask R-CNN不使用这些检测器）
+  # FCOS: 相关配置全部删除
+  # ATSS: 相关配置全部删除
+
+  ROI_HEADS:
+    DETECTIONS_PER_IMG: 100  # Mask R-CNN标准检测数
+#    NUM_CLASSES: 80  # COCO标准类别数（根据你的数据集调整）
+#    NMS_THRESH_TEST: 0.5  # Mask R-CNN标准NMS阈值
+#    SCORE_THRESH_TEST: 0.05  # Mask R-CNN标准分数阈值
+
+#  ROI_BOX_HEAD:
+#    NUM_FC: 2  # Mask R-CNN标准2个全连接层
+#    POOLER_RESOLUTION: 7  # Mask R-CNN标准池化分辨率
+#    POOLER_SAMPLING_RATIO: 0  # Mask R-CNN标准采样率
+#    FEATURE_EXTRACTOR: "ResNet50Conv5ROIFeatureExtractor"  # 标准特征提取器
+#
+#  ROI_MASK_HEAD:
+#    NUM_CONV: 4  # Mask R-CNN标准4个卷积层
+#    POOLER_RESOLUTION: 14  # Mask R-CNN标准mask池化分辨率
+#    POOLER_SAMPLING_RATIO: 0  # Mask R-CNN标准采样率
+#    FEATURE_EXTRACTOR: "ResNet50Conv5ROIFeatureExtractor"  # 标准特征提取器
+
+DATASETS:
+  TRAIN: ('lungtest3_grounding_train',)  # 保持你的数据集
+  TEST: ('lungtest4_2025_val',)  # 保持你的数据集
+
+  # 移除所有GLIP特有的数据集配置
+  ONE_HOT: False
+  FLICKR_COPY: 0
+  MIXED_COPY: 0
+  OBJECT365_COPY: 0
+  VG_COPY: 0
+  IN_COPY: 0
+  OI_COPY: 0
+  DISABLE_SHUFFLE: False  # Mask R-CNN默认开启shuffle
+  ADD_DET_PROMPT: False
+  RANDOM_SAMPLE_NEG: 0
+  CONTROL_PROB: (0.0, 0.0, 0.0, 0.0)
+  FURTHER_SCREEN: False
+  CAPTION_CONF: 0.0
+  CAPTION_NMS: -1.0
+  CAPTION_MIN_BOX: 0
+  SEPARATION_TOKENS: ""
+  PACK_RANDOM_CAPTION_NUMBER: 0
+  NO_RANDOM_PACK_PROBABILITY: 0.0
+  RANDOM_PACK_PROB: 0.0
+  CAPTION_FORMAT_VERSION: ""
+
+THRE: 0.5  # 保持不变
+INPUT:
+  PIXEL_MEAN: [102.9801, 115.9465, 122.7717]  # Mask R-CNN标准均值
+  PIXEL_STD: [1.0, 1.0, 1.0]  # Mask R-CNN标准标准差
+  MIN_SIZE_TRAIN: (640, 672, 704, 736, 768, 800)  # Mask R-CNN标准训练尺寸
+  MAX_SIZE_TRAIN: 1333  # 保持不变
+  MIN_SIZE_TEST: 800  # 保持不变
+  MAX_SIZE_TEST: 1333  # 保持不变
+
+AUGMENT:
+  MULT_MIN_SIZE_TRAIN: (640, 672, 704, 736, 768, 800)  # Mask R-CNN标准增强尺寸
+
+DATALOADER:
+  SIZE_DIVISIBILITY: 32  # 保持不变
+
+SOLVER:
+  OPTIMIZER: SGD  # Mask R-CNN标准优化器（替换ADAMW）
+  BASE_LR: 0.001  # Mask R-CNN标准基础学习率
+  LANG_LR: 0.0  # 移除语言分支学习率
+  WEIGHT_DECAY: 0.0001  # Mask R-CNN标准权重衰减
+  WEIGHT_DECAY_SCHEDULE: False  # Mask R-CNN默认关闭权重衰减调度
+  STEPS: (120000, 160000)  # Mask R-CNN标准学习率衰减步骤
+  MAX_ITER: 180000  # Mask R-CNN标准训练迭代数
+  IMS_PER_BATCH: 2  # Mask R-CNN标准批次大小（根据GPU调整）
+  WARMUP_ITERS: 1000  # Mask R-CNN标准预热迭代数
+  WARMUP_FACTOR: 0.001  # 保持不变
+  CHECKPOINT_PERIOD: 5000  # Mask R-CNN标准检查点保存周期
+  FIND_UNUSED_PARAMETERS: False  # 保持不变
+  USE_AMP: False  # Mask R-CNN默认关闭AMP
+  TEST_WITH_INFERENCE: False  # Mask R-CNN默认关闭训练中推理测试
+  CLIP_GRADIENTS:
+    ENABLED: False  # Mask R-CNN默认关闭梯度裁剪
+    CLIP_TYPE: "full_model"
+    CLIP_VALUE: 1.0
+    NORM_TYPE: 2.0
+
+TEST:
+  DURING_TRAINING: False  # Mask R-CNN默认关闭训练中测试
+  IMS_PER_BATCH: 2  # Mask R-CNN标准测试批次大小
+  EVAL_TASK: detection  # 保持不变
+
+OUTPUT_DIR: 'OUTPUT_TRAIN_lungsccMaskrcnn'  # 保持不变
+VISUALIZE: True  # 新增配置
+NEED_LABELBOX: True  # 新增配置
+NEED_PREDJSON: True
+NEED_2REALNAME: True
+NO_JSON_FOR_DISK_SPACE: True

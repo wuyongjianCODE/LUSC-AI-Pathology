@@ -1,0 +1,55 @@
+# VCS
+.git/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# IDE
+.idea/
+.vscode/
+
+# Build artifacts
+*.so
+*.dll
+*.exe
+
+# Logs / outputs
+*.log
+tensorboard/
+runs/
+output/
+outputs/
+
+# Large weights / checkpoints
+*.pth
+*.pt
+*.ckpt
+*.h5
+*.pkl
+
+# Large archives / arrays
+*.zip
+*.tar
+*.gz
+*.npy
+*.npz
+
+# Dataset / samples
+DATASET/
+dataset/
+datasets/
+samples/
+
+# Project-specific large dirs
+GLIP/GLIP/DATASET/
+GLIP/GLIP/tfw/
+GLIP/GLIP/TOSHOW_*
+lung/lung/samples/
+lung/lung/weights/
+
+# OS
+.DS_Store
+Thumbs.db
